@@ -14,6 +14,9 @@ namespace ZTepsic.FFmpeg {
 
 		#region Members
 
+		/// <summary>
+		/// Default file name of the executable ffmpeg file.
+		/// </summary>
 		public const string FFMPEG_FILE = "ffmpeg.exe";
 
 		/// <summary>

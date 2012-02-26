@@ -1,0 +1,58 @@
+﻿ffmpeg version N-38148-gb6ff81d Copyright (c) 2000-2012 the FFmpeg developers
+  built on Feb 23 2012 12:26:05 with gcc 4.6.2
+  configuration: --enable-gpl --enable-version3 --disable-w32threads --enable-runtime-cpudetect --enable-avisynth --enable-bzlib --enable-frei0r --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libfreetype --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-librtmp --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvo-aacenc --enable-libvo-amrwbenc --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libxavs --enable-libxvid --enable-zlib
+  libavutil      51. 40.100 / 51. 40.100
+  libavcodec     54.  4.100 / 54.  4.100
+  libavformat    54.  1.100 / 54.  1.100
+  libavdevice    53.  4.100 / 53.  4.100
+  libavfilter     2. 62.101 /  2. 62.101
+  libswscale      2.  1.100 /  2.  1.100
+  libswresample   0.  7.100 /  0.  7.100
+  libpostproc    52.  0.100 / 52.  0.100
+Metadata:
+  author                
+  copyright             
+  description           
+  keywords              
+  rating                
+  title                 
+  presetname            Custom
+  creationdate          Fri Feb 24 16:26:31 2012
+  videodevice           TerraTec Grabby Analog Capture
+  framerate             25.00
+  width                 480.00
+  height                360.00
+  videocodecid          avc1
+  videodatarate         240.00
+  avclevel              31.00
+  avcprofile            66.00
+  videokeyframe_frequency5.00
+  audiodevice           Linea (TerraTec Grabby)
+  audiosamplerate       44100.00
+  audiochannels         1.00
+  audioinputvolume      75.00
+  audiocodecid          .mp3
+  audiodatarate         56.00
+[flv @ 003F99E0] Estimating duration from bitrate, this may be inaccurate
+Input #0, flv, from 'rtmp://184.173.181.2:554/tvsei/tvsei':
+  Metadata:
+    author          : 
+    copyright       : 
+    description     : 
+    keywords        : 
+    rating          : 
+    title           : 
+    presetname      : Custom
+    creationdate    : Fri Feb 24 16:26:31 2012
+                    : 
+    videodevice     : TerraTec Grabby Analog Capture
+    avclevel        : 31
+    avcprofile      : 66
+    videokeyframe_frequency: 5
+    audiodevice     : Linea (TerraTec Grabby)
+    audiochannels   : 1
+    audioinputvolume: 75
+  Duration: N/A, start: 0.000000, bitrate: 301 kb/s
+    Stream #0:0: Video: h264 (Baseline), yuv420p, 480x360 [SAR 1:1 DAR 4:3], 245 kb/s, 25 tbr, 1k tbn, 50 tbc
+    Stream #0:1: Audio: mp3, 44100 Hz, mono, s16, 56 kb/s
+At least one output file must be specified

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ZTepsic.FFmpeg.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,9 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFmpegCommand.cs" />
+    <Compile Include="ResInfo.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="ResInfoFFmpegCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RtmpCheckIfOnlineCmd.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

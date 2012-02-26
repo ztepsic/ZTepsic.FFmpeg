@@ -90,6 +90,7 @@ namespace ZTepsic.FFmpeg.Tests {
 			Assert.AreEqual(FFmpegCommand.FFMPEG_FILE, ffmpegCmd.FFmpegExePath);
 		}
 
+		[Ignore]
 		[Test]
 		public void If_FFmpeg_Exe_File_Can_Not_Be_Found_In_Both_Locations_Throw_Exception() {
 			// Arrange
