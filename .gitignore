@@ -1,0 +1,11 @@
+*.user
+*.suo
+
+source/_ReSharper.ZTepsic.FFmpeg
+
+source/ZTepsic.FFmpeg/bin/
+source/ZTepsic.FFmpeg/obj/
+source/ZTepsic.FFmpeg.Tests/bin/
+source/ZTepsic.FFmpeg.Tests/obj/
+
+source/FFmpeg/

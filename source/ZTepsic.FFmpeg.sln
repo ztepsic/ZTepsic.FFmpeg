@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZTepsic.FFmpeg", "ZTepsic.FFmpeg\ZTepsic.FFmpeg.csproj", "{86BCA26C-9625-4689-8588-9B4091FBABD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZTepsic.FFmpeg.Tests", "ZTepsic.FFmpeg.Tests\ZTepsic.FFmpeg.Tests.csproj", "{5F0B2DB1-D554-479C-807A-CBEE9E04517C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{86BCA26C-9625-4689-8588-9B4091FBABD7}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5F0B2DB1-D554-479C-807A-CBEE9E04517C}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
