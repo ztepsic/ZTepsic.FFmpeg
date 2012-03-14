@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ffprobe>
+    <streams>
+        <stream index="0" codec_name="vp6f" codec_long_name="On2 VP6 (Flash version)" codec_type="video" codec_time_base="1/1000" codec_tag_string="[0][0][0][0]" codec_tag="0x0000" width="800" height="464" has_b_frames="0" pix_fmt="yuv420p" level="-99" r_frame_rate="25/1" avg_frame_rate="0/0" time_base="1/1000" start_time="0.000000"/>
+        <stream index="1" codec_name="mp3" codec_long_name="MP3 (MPEG audio layer 3)" codec_type="audio" codec_time_base="1/22050" codec_tag_string="[0][0][0][0]" codec_tag="0x0000" sample_fmt="s16" sample_rate="22050" channels="2" bits_per_sample="0" r_frame_rate="0/0" avg_frame_rate="500/13" time_base="1/1000" start_time="0.000000" bit_rate="64000"/>
+    </streams>
+
+    <format filename="rtmp://cp99495.live.edgefcs.net/live/Flash_live_KTO_TV@27823 live=1" nb_streams="2" format_name="flv" format_long_name="FLV format" start_time="0.000000" duration="0.000000">
+        <tag key="canseektoend" value="false"/>
+        <tag key="creationdate" value="Tue Mar 13 13:02:18 2012
+"/>
+        <tag key="lastkeyframetimestamp" value="0"/>
+        <tag key="lasttimestamp" value="0"/>
+        <tag key="metadatacreator" value="On2 Flix SDK for Dshow_2.7.4.0"/>
+        <tag key="On2" value="Technologies"/>
+        <tag key="profile" value="VP6-E"/>
+    </format>
+</ffprobe>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ffprobe>
+    <streams>
+        <stream index="0" codec_name="wmav2" codec_long_name="Windows Media Audio 2" codec_type="audio" codec_time_base="1/32000" codec_tag_string="a[1][0][0]" codec_tag="0x0161" sample_fmt="s16" sample_rate="32000" channels="2" bits_per_sample="0" r_frame_rate="0/0" avg_frame_rate="125/24" time_base="1/1000" start_time="144567.815000" bit_rate="32000">
+            <tag key="language" value="eng"/>
+        </stream>
+        <stream index="1" codec_name="wmv3" codec_long_name="Windows Media Video 9" codec_type="video" codec_time_base="1/1000" codec_tag_string="WMV3" codec_tag="0x33564d57" width="320" height="240" has_b_frames="0" pix_fmt="yuv420p" level="-99" r_frame_rate="25/1" avg_frame_rate="0/0" time_base="1/1000" start_time="144568.163000" bit_rate="241000">
+            <tag key="language" value="tha"/>
+        </stream>
+    </streams>
+
+    <format filename="mmst://203.146.129.248/dara" nb_streams="2" format_name="asf" format_long_name="ASF format" start_time="144567.815000" bit_rate="273000">
+        <tag key="WMFSDKVersion" value="11.0.5721.5265"/>
+        <tag key="WMFSDKNeeded" value="0.0.0.0000"/>
+        <tag key="IsVBR" value="0"/>
+    </format>
+</ffprobe>

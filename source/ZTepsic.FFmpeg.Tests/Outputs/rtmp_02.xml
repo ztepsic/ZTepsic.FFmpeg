@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ffprobe>
+    <streams>
+        <stream index="0" codec_name="h264" codec_long_name="H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10" codec_type="video" codec_time_base="1/50" codec_tag_string="[0][0][0][0]" codec_tag="0x0000" width="512" height="288" has_b_frames="1" sample_aspect_ratio="1:1" display_aspect_ratio="16:9" pix_fmt="yuv420p" level="51" is_avc="1" nal_length_size="4" r_frame_rate="50/2" avg_frame_rate="0/0" time_base="1/1000" start_time="0.040000"/>
+        <stream index="1" codec_name="aac" codec_long_name="Advanced Audio Coding" codec_type="audio" codec_time_base="1/24000" codec_tag_string="[0][0][0][0]" codec_tag="0x0000" sample_fmt="s16" sample_rate="48000" channels="1" bits_per_sample="0" r_frame_rate="0/0" avg_frame_rate="500/21" time_base="1/1000" start_time="0.035000"/>
+    </streams>
+
+    <format filename="rtmp://85.25.122.231/streamHD/video/stream live=1" nb_streams="2" format_name="flv" format_long_name="FLV format" start_time="0.035000"/>
+</ffprobe>
