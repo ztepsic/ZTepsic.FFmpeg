@@ -10,4 +10,5 @@ source/ZTepsic.FFmpeg/obj/
 source/ZTepsic.FFmpeg.Tests/bin/
 source/ZTepsic.FFmpeg.Tests/obj/
 
-source/FFmpeg/
+source/FFmpeg/*
+!source/FFmpeg/*.bat
