@@ -3,6 +3,8 @@
 
 source/_ReSharper.ZTepsic.FFmpeg
 
+source/packages
+
 source/ZTepsic.FFmpeg/bin/
 source/ZTepsic.FFmpeg/obj/
 source/ZTepsic.FFmpeg.Tests/bin/
