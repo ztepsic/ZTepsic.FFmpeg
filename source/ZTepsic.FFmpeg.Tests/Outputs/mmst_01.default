@@ -51,7 +51,7 @@ nb_read_packets=N/A
 TAG:language=tha
 [/STREAM]
 [FORMAT]
-filename=mmst://203.146.129.248/dara
+filename=mmst://111.111.111.111/example
 nb_streams=2
 format_name=asf
 format_long_name=ASF format

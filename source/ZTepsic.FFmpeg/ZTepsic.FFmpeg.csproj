@@ -45,6 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFmpegCommand.cs" />
+    <Compile Include="FFmpegException.cs" />
+    <Compile Include="MediaFormatInfo.cs" />
+    <Compile Include="MediaFormatInfoFactory.cs" />
+    <Compile Include="MediaInfo.cs" />
+    <Compile Include="MediaInfoFactory.cs" />
+    <Compile Include="MediaStreamInfo.cs" />
+    <Compile Include="MediaStreamInfoFactory.cs" />
     <Compile Include="ResInfo.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ResInfoFFmpegCmd.cs" />

@@ -51,7 +51,7 @@ nb_read_frames=N/A
 nb_read_packets=N/A
 [/STREAM]
 [FORMAT]
-filename=rtmp://85.25.122.231/streamHD/video/stream live=1
+filename=rtmp://111.111.111.111/streamHD/video/stream live=1
 nb_streams=2
 format_name=flv
 format_long_name=FLV format

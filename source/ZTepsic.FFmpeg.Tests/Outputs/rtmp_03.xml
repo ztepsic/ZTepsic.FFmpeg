@@ -5,7 +5,7 @@
         <stream index="1" codec_name="mp3" codec_long_name="MP3 (MPEG audio layer 3)" codec_type="audio" codec_time_base="1/22050" codec_tag_string="[0][0][0][0]" codec_tag="0x0000" sample_fmt="s16" sample_rate="22050" channels="2" bits_per_sample="0" r_frame_rate="0/0" avg_frame_rate="500/13" time_base="1/1000" start_time="0.000000" bit_rate="64000"/>
     </streams>
 
-    <format filename="rtmp://cp99495.live.edgefcs.net/live/Flash_live_KTO_TV@27823 live=1" nb_streams="2" format_name="flv" format_long_name="FLV format" start_time="0.000000" duration="0.000000">
+    <format filename="rtmp://stream.live.example.com/live/Flash_live_TV@27823 live=1" nb_streams="2" format_name="flv" format_long_name="FLV format" start_time="0.000000" duration="0.000000">
         <tag key="canseektoend" value="false"/>
         <tag key="creationdate" value="Tue Mar 13 13:02:18 2012
 "/>

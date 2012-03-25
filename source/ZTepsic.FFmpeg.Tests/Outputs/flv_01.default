@@ -51,7 +51,7 @@ nb_read_frames=N/A
 nb_read_packets=N/A
 [/STREAM]
 [FORMAT]
-filename=http://flash.live.tv-radio.com/mce/all/mce-h264.flv
+filename=http://flash.example.com/ex/all/ex-h264.flv
 nb_streams=2
 format_name=flv
 format_long_name=FLV format

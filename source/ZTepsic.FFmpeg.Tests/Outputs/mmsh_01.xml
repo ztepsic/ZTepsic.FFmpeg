@@ -9,14 +9,14 @@
         </stream>
     </streams>
 
-    <format filename="mmsh://rts.videostreaming.rs/rts" nb_streams="2" format_name="asf" format_long_name="ASF format" start_time="863916.568000" bit_rate="441960">
-        <tag key="WM/ParentalRating" value="BeotelNet ISP d.o.o."/>
+    <format filename="mmsh://asf.example.com/asf" nb_streams="2" format_name="asf" format_long_name="ASF format" start_time="863916.568000" bit_rate="441960">
+        <tag key="WM/ParentalRating" value="Example company"/>
         <tag key="WMFSDKVersion" value="12.0.7600.16385"/>
         <tag key="WMFSDKNeeded" value="0.0.0.0000"/>
         <tag key="IsVBR" value="0"/>
-        <tag key="title" value="RTS"/>
-        <tag key="artist" value="Radio Televizija Srbije"/>
-        <tag key="copyright" value="RTS"/>
-        <tag key="comment" value="Radio Televizija Srbije"/>
+        <tag key="title" value="Example TV"/>
+        <tag key="artist" value="Example Artist"/>
+        <tag key="copyright" value="Example TV"/>
+        <tag key="comment" value="Example Comment"/>
     </format>
 </ffprobe>

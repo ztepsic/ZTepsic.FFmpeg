@@ -51,7 +51,7 @@ nb_read_packets=N/A
 TAG:language=eng
 [/STREAM]
 [FORMAT]
-filename=mmsh://rts.videostreaming.rs/rts
+filename=mmsh://asf.example.com/asf
 nb_streams=2
 format_name=asf
 format_long_name=ASF format
@@ -59,12 +59,12 @@ start_time=863910.568000
 duration=N/A
 size=N/A
 bit_rate=441960
-TAG:WM/ParentalRating=BeotelNet ISP d.o.o.
+TAG:WM/ParentalRating=Example company
 TAG:WMFSDKVersion=12.0.7600.16385
 TAG:WMFSDKNeeded=0.0.0.0000
 TAG:IsVBR=0
-TAG:title=RTS
-TAG:artist=Radio Televizija Srbije
-TAG:copyright=RTS
-TAG:comment=Radio Televizija Srbije
+TAG:title=Example TV
+TAG:artist=Example Artist
+TAG:copyright=Example TV
+TAG:comment=Example Comment
 [/FORMAT]

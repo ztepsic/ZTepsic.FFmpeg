@@ -49,11 +49,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFmpegCommandTests.cs" />
+    <Compile Include="MediaFormatInfoFactoryTests.cs" />
+    <Compile Include="MediaFormatInfoTests.cs" />
+    <Compile Include="MediaInfoTests.cs" />
     <Compile Include="ResInfoFFmpegCmdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResInfoTests.cs" />
+    <Compile Include="Helpers\ClassMembersHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Outputs\flv_01.default" />
+    <None Include="Outputs\mmsh_01.default" />
+    <None Include="Outputs\mmsh_02_not.default" />
+    <None Include="Outputs\mmst_01.default" />
+    <None Include="Outputs\rtmp_01_not.default" />
+    <None Include="Outputs\rtmp_02.default" />
+    <None Include="Outputs\rtmp_03.default" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -62,12 +73,15 @@
       <Name>ZTepsic.FFmpeg</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Outputs\Output05.txt" />
-    <Content Include="Outputs\Output04.txt" />
-    <Content Include="Outputs\Output03.txt" />
-    <Content Include="Outputs\Output01.txt" />
-    <Content Include="Outputs\Output02.txt" />
+    <Content Include="Outputs\flv_01.xml" />
+    <Content Include="Outputs\mmsh_01.xml" />
+    <Content Include="Outputs\mmsh_02_not.xml" />
+    <Content Include="Outputs\mmst_01.xml" />
+    <Content Include="Outputs\rtmp_01_not.xml" />
+    <Content Include="Outputs\rtmp_02.xml" />
+    <Content Include="Outputs\rtmp_03.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

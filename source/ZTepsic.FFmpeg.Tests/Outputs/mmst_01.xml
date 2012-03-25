@@ -9,7 +9,7 @@
         </stream>
     </streams>
 
-    <format filename="mmst://203.146.129.248/dara" nb_streams="2" format_name="asf" format_long_name="ASF format" start_time="144567.815000" bit_rate="273000">
+    <format filename="mmst://111.111.111.111/example" nb_streams="2" format_name="asf" format_long_name="ASF format" start_time="144567.815000" bit_rate="273000">
         <tag key="WMFSDKVersion" value="11.0.5721.5265"/>
         <tag key="WMFSDKNeeded" value="0.0.0.0000"/>
         <tag key="IsVBR" value="0"/>

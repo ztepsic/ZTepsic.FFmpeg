@@ -49,7 +49,7 @@ nb_read_frames=N/A
 nb_read_packets=N/A
 [/STREAM]
 [FORMAT]
-filename=rtmp://cp99495.live.edgefcs.net/live/Flash_live_KTO_TV@27823 live=1
+filename=rtmp://stream.live.example.com/live/Flash_live_TV@27823 live=1
 nb_streams=2
 format_name=flv
 format_long_name=FLV format
