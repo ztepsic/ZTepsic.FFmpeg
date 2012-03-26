@@ -52,6 +52,7 @@
     <Compile Include="MediaFormatInfoFactoryTests.cs" />
     <Compile Include="MediaFormatInfoTests.cs" />
     <Compile Include="MediaInfoTests.cs" />
+    <Compile Include="MediaStreamInfoFactoryTests.cs" />
     <Compile Include="MediaStreamInfoTests.cs" />
     <Compile Include="ResInfoFFmpegCmdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ZTepsic.FFmpeg {
 	/// <summary>
@@ -69,9 +70,56 @@ namespace ZTepsic.FFmpeg {
 		public string CodecLongName { get; internal set; }
 
 		/// <summary>
+		/// Frame rate
+		/// </summary>
+		private string frameRateStr;
+
+		/// <summary>
+		/// Frame rate
+		/// </summary>
+		public string FrameRateStr {
+			get { return frameRateStr; }
+			set {
+				frameRateStr = value;
+				FrameRate = toDecimalRatio(frameRateStr);
+			}
+		}
+
+		/// <summary>
+		/// Frame rate
+		/// </summary>
+		public decimal FrameRate { get; private set; }
+
+		/// <summary>
+		/// Avg frame rate
+		/// </summary>
+		private string avgFrameRateStr;
+
+		/// <summary>
+		/// Avg frame rate
+		/// </summary>
+		public string AvgFrameRateStr {
+			get { return avgFrameRateStr; }
+			set { 
+				avgFrameRateStr = value;
+				AvgFrameRate = toDecimalRatio(avgFrameRateStr);
+			}
+		}
+
+		/// <summary>
+		/// Average frame rate
+		/// </summary>
+		public decimal AvgFrameRate { get; private set; }
+
+		/// <summary>
 		/// Stream duration in seconds
 		/// </summary>
 		public decimal Duration { get; internal set; }
+
+		/// <summary>
+		/// Start time in seconds
+		/// </summary>
+		public decimal StartTime { get; internal set; }
 
 		#region Video specific
 
@@ -114,23 +162,54 @@ namespace ZTepsic.FFmpeg {
 		}
 
 		/// <summary>
-		/// Average frames per second
+		/// Sample aspect ratio
 		/// </summary>
-		private int videoFps;
+		private string videoSampleAspectRatioStr;
 
 		/// <summary>
-		/// Average frames per second
+		/// Sample aspect ratio
 		/// </summary>
-		public int VideoFps {
-			get { return videoFps; }
+		public string VideoSampleAspectRatioStr {
+			get { return videoSampleAspectRatioStr; }
 			internal set {
 				if (type == MediaStreamType.Video) {
-					videoFps = value;
+					videoSampleAspectRatioStr = value;
+					VideoSampleAspectRatio = toDecimalRatio(videoSampleAspectRatioStr);
 				} else {
-					throw new ArgumentException("Can't set VideoFps property on no video type.");
+					throw new ArgumentException("Can't set ratioStr property on no video type.");
 				}
 			}
 		}
+
+		/// <summary>
+		/// Sample aspect ratio
+		/// </summary>
+		public decimal VideoSampleAspectRatio { get; private set; }
+
+		/// <summary>
+		/// Display aspect ratio
+		/// </summary>
+		private string videoDisplayAspectRatioStr;
+
+		/// <summary>
+		/// Display aspect ratio
+		/// </summary>
+		public string VideoDisplayAspectRatioStr {
+			get { return videoDisplayAspectRatioStr; }
+			internal set {
+				if (type == MediaStreamType.Video) {
+					videoDisplayAspectRatioStr = value;
+					VideoDisplayAspectRatio = toDecimalRatio(videoDisplayAspectRatioStr);
+				} else {
+					throw new ArgumentException("Can't set videoDisplayAspectRatio property on no video type.");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Display aspect ratio
+		/// </summary>
+		public decimal VideoDisplayAspectRatio { get; private set; }
 
 		#endregion
 
@@ -195,6 +274,36 @@ namespace ZTepsic.FFmpeg {
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		/// Converts string ratio to decimal representation
+		/// </summary>
+		/// <param name="ratioStr">string representation of ratio</param>
+		/// <returns>decimal representation of ratio</returns>
+		private static decimal toDecimalRatio(string ratioStr) {
+			decimal ratio = 0;
+
+			var split = Regex.Split(ratioStr, ":|/");
+			if(split.Length == 2) {
+				decimal numerator = 0;
+				decimal denominator = 0;
+
+				try {
+					numerator = Decimal.Parse(split[0]);
+					denominator = Decimal.Parse(split[1]);	
+				} catch(Exception) {
+					numerator = 0;
+					denominator = 0;
+				}
+				
+
+				if (numerator > 0 && denominator > 0) {
+					ratio = numerator / denominator;
+				}	
+			}
+
+			return ratio;
+		}
 
 		/// <summary>
 		/// ToString
@@ -263,9 +372,15 @@ namespace ZTepsic.FFmpeg {
 				type == mediaStreamInfo.Type &&
 				videoWidth == mediaStreamInfo.videoWidth &&
 				videoHeight == mediaStreamInfo.VideoHeight &&
-				videoFps == mediaStreamInfo.VideoFps &&
+				VideoSampleAspectRatio == mediaStreamInfo.VideoSampleAspectRatio &&
+				videoSampleAspectRatioStr.Equals(mediaStreamInfo.VideoSampleAspectRatioStr) &&
+				VideoDisplayAspectRatio == mediaStreamInfo.VideoDisplayAspectRatio &&
+				videoDisplayAspectRatioStr.Equals(mediaStreamInfo.VideoDisplayAspectRatioStr) &&
 				audioChannels == mediaStreamInfo.AudioChannels &&
 				audioSampleRate == mediaStreamInfo.AudioSampleRate &&
+				FrameRate == mediaStreamInfo.FrameRate &&
+				AvgFrameRate == mediaStreamInfo.AvgFrameRate &&
+				StartTime == mediaStreamInfo.StartTime &&
 				Duration == mediaStreamInfo.Duration;
 		}
 
@@ -283,9 +398,16 @@ namespace ZTepsic.FFmpeg {
 				result = ODD_PRIME * result + type.GetHashCode();
 				result = ODD_PRIME * result + videoWidth.GetHashCode();
 				result = ODD_PRIME * result + videoHeight.GetHashCode();
-				result = ODD_PRIME * result + videoFps.GetHashCode();
+				result = ODD_PRIME * result + VideoSampleAspectRatio.GetHashCode();
+				result = ODD_PRIME * result + videoSampleAspectRatioStr.GetHashCode();
+				result = ODD_PRIME * result + VideoDisplayAspectRatio.GetHashCode();
+				result = ODD_PRIME * result + videoDisplayAspectRatioStr.GetHashCode();
 				result = ODD_PRIME * result + audioChannels.GetHashCode();
 				result = ODD_PRIME * result + audioSampleRate.GetHashCode();
+				result = ODD_PRIME * result + FrameRate.GetHashCode();
+				result = ODD_PRIME * result + AvgFrameRate.GetHashCode();
+				result = ODD_PRIME * result + StartTime.GetHashCode();
+				result = ODD_PRIME * result + Duration.GetHashCode();
 				hashCode = result;
 			}
 

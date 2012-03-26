@@ -43,9 +43,51 @@ namespace ZTepsic.FFmpeg {
 		public const string CODEC_LONG_NAME = "codec_long_name";
 
 		/// <summary>
+		/// Codec time base attribute
+		/// </summary>
+		public const string CODEC_TIME_BASE = "codec_time_base";
+
+		/// <summary>
+		/// Codec tag string attribute
+		/// </summary>
+		public const string CODEC_TAG_STRING = "codec_tag_string";
+
+		/// <summary>
+		/// Codec tag attribute
+		/// </summary>
+		public const string CODEC_TAG = "codec_tag";
+
+		/// <summary>
 		/// Duration attribute
 		/// </summary>
 		public const string DURATION = "duration";
+
+		/// <summary>
+		/// Average frame rate attribute
+		/// </summary>
+		public const string AVG_FRAME_RATE = "avg_frame_rate";
+
+		/// <summary>
+		/// R frame rate attribute
+		/// </summary>
+		public const string R_FRAME_RATE = "r_frame_rate";
+
+		/// <summary>
+		/// Time base attribute
+		/// </summary>
+		public const string TIME_BASE = "time_base";
+
+		/// <summary>
+		/// Start time attribute
+		/// </summary>
+		public const string START_TIME = "start_time";
+
+		/// <summary>
+		/// Bit rate attribute
+		/// </summary>
+		public const string BIT_RATE = "bit_rate";
+
+		#region Video specific
 
 		/// <summary>
 		/// Width attribute
@@ -58,9 +100,43 @@ namespace ZTepsic.FFmpeg {
 		public const string HEIGHT = "height";
 
 		/// <summary>
-		/// Average frame rate attribute
+		/// 
 		/// </summary>
-		public const string AVG_FRAME_RATE = "avg_frame_rate";
+		public const string HAS_B_FRAMES = "has_b_frames";
+
+		/// <summary>
+		/// Sample aspect ratio attribute
+		/// </summary>
+		public const string SAMPLE_ASPECT_RATIO = "sample_aspect_ratio";
+
+		/// <summary>
+		/// Sample aspect ratio attribute
+		/// </summary>
+		public const string DISPLAY_ASPECT_RATIO = "display_aspect_ratio";
+
+		/// <summary>
+		/// Pix fmt attribute
+		/// </summary>
+		public const string PIX_FMT = "pix_fmt";
+
+		/// <summary>
+		/// Level attribute
+		/// </summary>
+		public const string LEVEL = "level";
+
+		/// <summary>
+		/// Is avc attribute
+		/// </summary>
+		public const string IS_AVC = "is_avc";
+
+		/// <summary>
+		/// Nal length size attribute
+		/// </summary>
+		public const string NAL_LENGTH_SIZE = "nal_length_size";
+
+		#endregion
+
+		#region Audio specific
 
 		/// <summary>
 		/// Channels attribute
@@ -71,6 +147,18 @@ namespace ZTepsic.FFmpeg {
 		/// Sample rate attribute
 		/// </summary>
 		public const string SAMPLE_RATE = "sample_rate";
+
+		/// <summary>
+		/// Sample fmt attribute
+		/// </summary>
+		public const string SAMPLE_FMT = "sample_rate";
+
+		/// <summary>
+		/// Bits per sample attribute
+		/// </summary>
+		public const string BITS_PER_SAMPLE = "bits_per_sample";
+
+		#endregion
 
 		private const string CODEC_TYPE_VIDEO = "video";
 		private const string CODEC_TYPE_AUDIO = "audio";
@@ -176,6 +264,37 @@ namespace ZTepsic.FFmpeg {
 									mediaStreamInfo.CodecLongName = streamNode.Attributes[CODEC_LONG_NAME].InnerText;
 								}
 
+								if (streamNode.Attributes[START_TIME] != null) {
+									try {
+										mediaStreamInfo.StartTime = Decimal.Parse(streamNode.Attributes[START_TIME].InnerText,
+																				 CultureInfo.InvariantCulture);
+									} catch (Exception) {
+										mediaStreamInfo.StartTime = 0;
+									}
+								}
+
+								if (streamNode.Attributes[DURATION] != null) {
+									try {
+										mediaStreamInfo.Duration = Decimal.Parse(streamNode.Attributes[DURATION].InnerText,
+																				 CultureInfo.InvariantCulture);
+									} catch (Exception) {
+										mediaStreamInfo.Duration = 0;
+									}
+								}
+
+								//r_frame_rate="25/1" ||"50/2"
+								if (streamNode.Attributes[R_FRAME_RATE] != null) {
+									mediaStreamInfo.FrameRateStr = streamNode.Attributes[R_FRAME_RATE].InnerText;
+								}
+
+
+								// avg_frame_rate="1000/23" || "500/21"
+								if (streamNode.Attributes[AVG_FRAME_RATE] != null) {
+									mediaStreamInfo.AvgFrameRateStr = streamNode.Attributes[AVG_FRAME_RATE].InnerText;
+								}
+
+								#region Video specific
+
 								if (streamNode.Attributes[WIDTH] != null) {
 									try {
 										mediaStreamInfo.VideoWidth = Int32.Parse(streamNode.Attributes[WIDTH].InnerText, CultureInfo.InvariantCulture);
@@ -193,23 +312,19 @@ namespace ZTepsic.FFmpeg {
 									}
 								}
 
-								if (streamNode.Attributes[DURATION] != null) {
-									try {
-										mediaStreamInfo.Duration = Decimal.Parse(streamNode.Attributes[DURATION].InnerText,
-										                                         CultureInfo.InvariantCulture);
-									} catch (Exception) {
-										mediaStreamInfo.Duration = 0;
-									}
+								// sample_aspect_ratio="136:135" || "1:1"
+								if (streamNode.Attributes[SAMPLE_ASPECT_RATIO] != null) {
+									mediaStreamInfo.VideoSampleAspectRatioStr = streamNode.Attributes[SAMPLE_ASPECT_RATIO].InnerText;
 								}
 
-
-								if (streamNode.Attributes[AVG_FRAME_RATE] != null) {
-									try {
-										mediaStreamInfo.VideoFps = Int32.Parse(streamNode.Attributes[AVG_FRAME_RATE].InnerText);
-									} catch (Exception) {
-										mediaStreamInfo.VideoFps = 0;
-									}
+								//display_aspect_ratio="16:9"
+								if (streamNode.Attributes[DISPLAY_ASPECT_RATIO] != null) {
+									mediaStreamInfo.VideoDisplayAspectRatioStr = streamNode.Attributes[DISPLAY_ASPECT_RATIO].InnerText;
 								}
+
+								#endregion
+
+								#region Audio specific
 
 								if (streamNode.Attributes[CHANNELS] != null) {
 									try {
@@ -227,6 +342,8 @@ namespace ZTepsic.FFmpeg {
 										mediaStreamInfo.AudioSampleRate = 0;
 									}
 								}
+
+								#endregion
 
 								mediaStreamInfos.Add(mediaStreamInfo);
 							}
