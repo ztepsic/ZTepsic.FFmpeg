@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace ZTepsic.FFmpeg {
 	/// <summary>
@@ -76,6 +75,10 @@ namespace ZTepsic.FFmpeg {
 
 		#region Methods
 
+		/// <summary>
+		/// ToString
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString() {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.Append("Filename: ")
@@ -103,6 +106,11 @@ namespace ZTepsic.FFmpeg {
 			return stringBuilder.ToString();
 		}
 
+		/// <summary>
+		/// Equals
+		/// </summary>
+		/// <param name="obj">object for which the equality is checked</param>
+		/// <returns>true if objects are equal, false otherwise</returns>
 		public override bool Equals(object obj) {
 			if (this == obj) {
 				return true;
@@ -122,6 +130,10 @@ namespace ZTepsic.FFmpeg {
 				FileSize == mediaFormatInfo.FileSize;
 		}
 
+		/// <summary>
+		/// HashCode
+		/// </summary>
+		/// <returns>hash code</returns>
 		public override int GetHashCode() {
 			int result = hashCode;
 			if(result == 0) {

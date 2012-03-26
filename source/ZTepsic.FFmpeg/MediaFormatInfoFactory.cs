@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Xml;
 
 namespace ZTepsic.FFmpeg {
@@ -12,22 +11,56 @@ namespace ZTepsic.FFmpeg {
 
 		#region Members
 
+		/// <summary>
+		/// Format element
+		/// </summary>
 		public const string FORMAT_NODE = "format";
 
+		/// <summary>
+		/// File name attribute
+		/// </summary>
 		public const string FILE_NAME = "filename";
+
+		/// <summary>
+		/// Number of streams attribute
+		/// </summary>
 		public const string NB_STREAMS = "nb_streams";
+
+		/// <summary>
+		/// Format name attribute
+		/// </summary>
 		public const string FORMAT = "format_name";
+
+		/// <summary>
+		/// Format long name attribute
+		/// </summary>
 		public const string FORMAT_LONG_NAME = "format_long_name";
+
+		/// <summary>
+		/// Start time attribute
+		/// </summary>
 		public const string START_TIME = "start_time";
+
+		/// <summary>
+		/// Duration attribute
+		/// </summary>
 		public const string DURATION = "duration";
+
+		/// <summary>
+		/// Bit rate attribute
+		/// </summary>
 		public const string BIT_RATE = "bit_rate";
+
+		/// <summary>
+		/// File size attribute
+		/// </summary>
 		public const string FILE_SIZE = "size";
 
+
+		/// <summary>
+		/// XML extension
+		/// </summary>
 		public const string XML_EXT = ".xml";
-
-		#endregion
-
-		#region Constructors and Init
 
 		#endregion
 
@@ -106,7 +139,7 @@ namespace ZTepsic.FFmpeg {
 						if(formatNode.Attributes[BIT_RATE] != null) {
 							try {
 								mediaFormatInfo.Bitrate = Decimal.Parse(formatNode.Attributes[BIT_RATE].InnerText, CultureInfo.InvariantCulture);	
-							} catch(Exception ex) {
+							} catch(Exception) {
 								mediaFormatInfo.Bitrate = 0;
 							}
 						}
@@ -114,7 +147,7 @@ namespace ZTepsic.FFmpeg {
 						if(formatNode.Attributes[DURATION] != null) {
 							try {
 								mediaFormatInfo.Duration = Decimal.Parse(formatNode.Attributes[DURATION].InnerText, CultureInfo.InvariantCulture);		
-							} catch(Exception ex) {
+							} catch(Exception) {
 								mediaFormatInfo.Duration = 0;
 							}
 						}
@@ -122,7 +155,7 @@ namespace ZTepsic.FFmpeg {
 						if (formatNode.Attributes[START_TIME] != null) {
 							try {
 								mediaFormatInfo.StartTime = Decimal.Parse(formatNode.Attributes[START_TIME].InnerText, CultureInfo.InvariantCulture);	
-							} catch(Exception ex) {
+							} catch(Exception) {
 								mediaFormatInfo.StartTime = 0;
 							}
 						}
@@ -130,7 +163,7 @@ namespace ZTepsic.FFmpeg {
 						if (formatNode.Attributes[FILE_SIZE] != null) {
 							try {
 								mediaFormatInfo.FileSize = Decimal.Parse(formatNode.Attributes[FILE_SIZE].InnerText, CultureInfo.InvariantCulture);	
-							} catch(Exception ex) {
+							} catch(Exception) {
 								mediaFormatInfo.FileSize = 0;
 							}
 						}

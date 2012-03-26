@@ -10,24 +10,16 @@ namespace ZTepsic.FFmpeg.Tests {
 
 		private string xml;
 
-		private string fileName;
-		private string format;
-		private string formatLongName;
-		private decimal bitRate;
-		private decimal duration;
-		private decimal startTime;
-		private decimal fileSize;
+		private string fileName = "filename.flv";
+		private string format = "flv";
+		private string formatLongName = "FLV format";
+		private decimal bitRate = 3000;
+		private decimal duration = 564.23m;
+		private decimal startTime = 0.12m;
+		private decimal fileSize = 20;
 
 		[SetUp]
-		private void setUp() {
-			fileName = "filename.flv";
-			format = "flv";
-			formatLongName = "FLV format";
-			bitRate = 3000;
-			duration = 564.23m;
-			startTime = 0.12m;
-			fileSize = 20;
-
+		public void SetUp() {
 			XDocument xDoc = new XDocument();
 			var rootElem = new XElement("ffprobe");
 			var formatElem = new XElement(MediaFormatInfoFactory.FORMAT_NODE);
@@ -69,7 +61,7 @@ namespace ZTepsic.FFmpeg.Tests {
 		}
 
 		[Test]
-		public void Can_Read_Values() {
+		public void Can_Read_Values_From_MediaFormatInfo_Object() {
 			// Arrange
 			string toString = String.Format("Filename: {0}; Format: {1}; Format long name: {2}; Bitrate: {3}; Duration: {4} sec; Start Time: {5} sec; File size: {6}", 
 				fileName,
@@ -99,18 +91,18 @@ namespace ZTepsic.FFmpeg.Tests {
 		public void Can_Compare_Two_MediFormatInfo_Objects() {
 			// Arrange
 			MediaFormatInfo mediaFormatInfo01 = MediaFormatInfoFactory.CreateFromXml(xml);
-			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.FormatLongName, formatLongName);
+			/*mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.FormatLongName, formatLongName);
 			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.Bitrate, bitRate);
 			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.Duration, duration);
 			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.StartTime, startTime);
-			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.FileSize, fileSize);
+			mediaFormatInfo01.SetPropertyTo<MediaFormatInfo>(x => x.FileSize, fileSize);*/
 
 			MediaFormatInfo mediaFormatInfo02 = MediaFormatInfoFactory.CreateFromXml(xml);
-			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.FormatLongName, formatLongName);
+			/*mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.FormatLongName, formatLongName);
 			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.Bitrate, bitRate);
 			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.Duration, duration);
 			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.StartTime, startTime);
-			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.FileSize, fileSize);
+			mediaFormatInfo02.SetPropertyTo<MediaFormatInfo>(x => x.FileSize, fileSize);*/
 
 			// Act
 

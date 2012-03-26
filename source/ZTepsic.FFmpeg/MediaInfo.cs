@@ -12,10 +12,24 @@ namespace ZTepsic.FFmpeg {
 
 		#region Members
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private readonly MediaFormatInfo format;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public MediaFormatInfo Format { get; internal set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private IList<MediaStreamInfo> streams;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public IList<MediaStreamInfo> Streams {
 			get { return new ReadOnlyCollection<MediaStreamInfo>(streams); }
 		}
