@@ -11,7 +11,7 @@ namespace ZTepsic.FFmpeg.Tests {
 		private string XML_DIR = Environment.CurrentDirectory + @"\Outputs\";
 
 		[Test]
-		public void Can_Create_MediaStreamInfo_From_Xml_File_Flv() {
+		public void Can_Create_MediaStreamInfos_From_Xml_File_Flv() {
 			// Arrange
 
 			// Act
@@ -40,7 +40,9 @@ namespace ZTepsic.FFmpeg.Tests {
 			// level="21"
 			// is_avc="1"
 			// nal_length_size="4"
+			Assert.AreEqual("25/1", videoStreamInfo.FrameRateStr);
 			Assert.AreEqual(25, videoStreamInfo.FrameRate);
+			Assert.AreEqual("0/0", videoStreamInfo.AvgFrameRateStr);
 			Assert.AreEqual(0, videoStreamInfo.AvgFrameRate);
 			// time_base="1/1000"
 			Assert.AreEqual(200904.200000, videoStreamInfo.StartTime);
@@ -57,7 +59,9 @@ namespace ZTepsic.FFmpeg.Tests {
 			Assert.AreEqual(44100, audioStreamInfo.AudioSampleRate);
 			Assert.AreEqual(2, audioStreamInfo.AudioChannels);
 			// bits_per_sample="0"
+			Assert.AreEqual("0/0", audioStreamInfo.FrameRateStr);
 			Assert.AreEqual(0, audioStreamInfo.FrameRate);
+			Assert.AreEqual("1000/23", audioStreamInfo.AvgFrameRateStr);
 			Assert.AreEqual(43.478260869565217391304347826087, audioStreamInfo.AvgFrameRate);
 			// time_base="1/1000"
 			Assert.AreEqual(200904.120000, audioStreamInfo.StartTime);
@@ -65,21 +69,58 @@ namespace ZTepsic.FFmpeg.Tests {
 		}
 
 		[Test]
-		public void Can_Create_MediaFormatInfo_From_Xml_File_Mmsh_01() {
+		public void Can_Create_MediaStreamInfos_From_Xml_File_Mmsh_01() {
 			// Arrange
 
 			// Act
-			MediaFormatInfo mediaFormatInfo = MediaFormatInfoFactory.CreateFromFile(XML_DIR + "mmsh_01.xml");
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "mmsh_01.xml");
 
 			// Assert
-			Assert.NotNull(mediaFormatInfo);
-			Assert.AreEqual("mmsh://asf.example.com/asf", mediaFormatInfo.FileName);
-			Assert.AreEqual("asf", mediaFormatInfo.Format);
-			Assert.AreEqual("ASF format", mediaFormatInfo.FormatLongName);
-			Assert.AreEqual(441960, mediaFormatInfo.Bitrate);
-			Assert.AreEqual(863916.568000, mediaFormatInfo.StartTime);
-			Assert.AreEqual(0, mediaFormatInfo.Duration);
-			Assert.AreEqual(0, mediaFormatInfo.FileSize);
+			Assert.NotNull(mediaStreamInfos);
+			Assert.AreEqual(2, mediaStreamInfos.Count);
+
+			var videoStreamInfo = mediaStreamInfos[1];
+			Assert.AreEqual(1, videoStreamInfo.Index);
+			Assert.AreEqual("wmv3", videoStreamInfo.Codec);
+			Assert.AreEqual("Windows Media Video 9", videoStreamInfo.CodecLongName);
+			Assert.AreEqual("video", videoStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/1000"
+			// codec_tag_string="WMV3"
+			// codec_tag="0x33564d57
+			Assert.AreEqual(720, videoStreamInfo.VideoWidth);
+			Assert.AreEqual(576, videoStreamInfo.VideoHeight);
+			// has_b_frames="0"
+			Assert.AreEqual(null, videoStreamInfo.VideoSampleAspectRatioStr);
+			Assert.AreEqual(0, videoStreamInfo.VideoSampleAspectRatio);
+			Assert.AreEqual(null, videoStreamInfo.VideoDisplayAspectRatioStr);
+			Assert.AreEqual(0, videoStreamInfo.VideoDisplayAspectRatio);
+			// pix_fmt="yuv420p"
+			// level="-99"
+			Assert.AreEqual(25, videoStreamInfo.FrameRate);
+			Assert.AreEqual(0, videoStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(863916.568000, videoStreamInfo.StartTime);
+			Assert.AreEqual(410000, videoStreamInfo.BitRate);
+
+			var audioStreamInfo = mediaStreamInfos[0];
+			Assert.AreEqual(0, audioStreamInfo.Index);
+			Assert.AreEqual("wmav2", audioStreamInfo.Codec);
+			Assert.AreEqual("Windows Media Audio 2", audioStreamInfo.CodecLongName);
+			Assert.AreEqual("audio", audioStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/44100"
+			// codec_tag_string="a[1][0][0]"
+			// codec_tag="0x0161"
+			// sample_fmt="s16"
+			Assert.AreEqual(44100, audioStreamInfo.AudioSampleRate);
+			Assert.AreEqual(2, audioStreamInfo.AudioChannels);
+			// bits_per_sample="0"
+			Assert.AreEqual("0/0", audioStreamInfo.FrameRateStr);
+			Assert.AreEqual(0, audioStreamInfo.FrameRate);
+			Assert.AreEqual("200/37", audioStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(5.4054054054054054054054054054054m, audioStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(863916.616000, audioStreamInfo.StartTime);
+			Assert.AreEqual(31960, audioStreamInfo.BitRate);
 
 		}
 
@@ -88,17 +129,58 @@ namespace ZTepsic.FFmpeg.Tests {
 			// Arrange
 
 			// Act
-			MediaFormatInfo mediaFormatInfo = MediaFormatInfoFactory.CreateFromFile(XML_DIR + "mmst_01.xml");
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "mmst_01.xml");
 
 			// Assert
-			Assert.NotNull(mediaFormatInfo);
-			Assert.AreEqual("mmst://111.111.111.111/example", mediaFormatInfo.FileName);
-			Assert.AreEqual("asf", mediaFormatInfo.Format);
-			Assert.AreEqual("ASF format", mediaFormatInfo.FormatLongName);
-			Assert.AreEqual(273000, mediaFormatInfo.Bitrate);
-			Assert.AreEqual(144567.815000, mediaFormatInfo.StartTime);
-			Assert.AreEqual(0, mediaFormatInfo.Duration);
-			Assert.AreEqual(0, mediaFormatInfo.FileSize);
+			Assert.NotNull(mediaStreamInfos);
+			Assert.AreEqual(2, mediaStreamInfos.Count);
+
+			var videoStreamInfo = mediaStreamInfos[1];
+			Assert.AreEqual(1, videoStreamInfo.Index);
+			Assert.AreEqual("wmv3", videoStreamInfo.Codec);
+			Assert.AreEqual("Windows Media Video 9", videoStreamInfo.CodecLongName);
+			Assert.AreEqual("video", videoStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/1000"
+			// codec_tag_string="WMV3"
+			// codec_tag="0x33564d57"
+			Assert.AreEqual(320, videoStreamInfo.VideoWidth);
+			Assert.AreEqual(240, videoStreamInfo.VideoHeight);
+			// has_b_frames="0"
+			Assert.AreEqual(null, videoStreamInfo.VideoSampleAspectRatioStr);
+			Assert.AreEqual(0m, videoStreamInfo.VideoSampleAspectRatio);
+			Assert.AreEqual(null, videoStreamInfo.VideoDisplayAspectRatioStr);
+			Assert.AreEqual(0m, videoStreamInfo.VideoDisplayAspectRatio);
+			// pix_fmt="yuv420p"
+			// level="-99"
+			// is_avc="1"
+			// nal_length_size="4"
+			Assert.AreEqual("25/1", videoStreamInfo.FrameRateStr);
+			Assert.AreEqual(25, videoStreamInfo.FrameRate);
+			Assert.AreEqual("0/0", videoStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(0, videoStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(144568.163000, videoStreamInfo.StartTime);
+			Assert.AreEqual(241000, videoStreamInfo.BitRate);
+
+			var audioStreamInfo = mediaStreamInfos[0];
+			Assert.AreEqual(0, audioStreamInfo.Index);
+			Assert.AreEqual("wmav2", audioStreamInfo.Codec);
+			Assert.AreEqual("Windows Media Audio 2", audioStreamInfo.CodecLongName);
+			Assert.AreEqual("audio", audioStreamInfo.Type.ToString().ToLower());
+			// ccodec_time_base="1/32000"
+			// codec_tag_string="a[1][0][0]"
+			// codec_tag="0x0161"
+			// sample_fmt="s16"
+			Assert.AreEqual(32000, audioStreamInfo.AudioSampleRate);
+			Assert.AreEqual(2, audioStreamInfo.AudioChannels);
+			// bits_per_sample="0"
+			Assert.AreEqual("0/0", audioStreamInfo.FrameRateStr);
+			Assert.AreEqual(0, audioStreamInfo.FrameRate);
+			Assert.AreEqual("125/24", audioStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(5.2083333333333333333333333333333m, audioStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(144567.815000, audioStreamInfo.StartTime);
+			Assert.AreEqual(32000, audioStreamInfo.BitRate);
 
 		}
 
@@ -107,18 +189,56 @@ namespace ZTepsic.FFmpeg.Tests {
 			// Arrange
 
 			// Act
-			MediaFormatInfo mediaFormatInfo = MediaFormatInfoFactory.CreateFromFile(XML_DIR + "rtmp_02.xml");
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "rtmp_02.xml");
 
 			// Assert
-			Assert.NotNull(mediaFormatInfo);
-			Assert.AreEqual("rtmp://111.111.111.111/streamHD/video/stream live=1", mediaFormatInfo.FileName);
-			Assert.AreEqual("flv", mediaFormatInfo.Format);
-			Assert.AreEqual("FLV format", mediaFormatInfo.FormatLongName);
-			Assert.AreEqual(0, mediaFormatInfo.Bitrate);
-			Assert.AreEqual(0.035000, mediaFormatInfo.StartTime);
-			Assert.AreEqual(0, mediaFormatInfo.Duration);
-			Assert.AreEqual(0, mediaFormatInfo.FileSize);
+			Assert.NotNull(mediaStreamInfos);
+			Assert.AreEqual(2, mediaStreamInfos.Count);
 
+			var videoStreamInfo = mediaStreamInfos[0];
+			Assert.AreEqual(0, videoStreamInfo.Index);
+			Assert.AreEqual("h264", videoStreamInfo.Codec);
+			Assert.AreEqual("H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10", videoStreamInfo.CodecLongName);
+			Assert.AreEqual("video", videoStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/50"
+			// codec_tag_string="[0][0][0][0]"
+			// codec_tag="0x0000"
+			Assert.AreEqual(512, videoStreamInfo.VideoWidth);
+			Assert.AreEqual(288, videoStreamInfo.VideoHeight);
+			// has_b_frames="1"
+			Assert.AreEqual("1:1", videoStreamInfo.VideoSampleAspectRatioStr);
+			Assert.AreEqual(1m, videoStreamInfo.VideoSampleAspectRatio);
+			Assert.AreEqual("16:9", videoStreamInfo.VideoDisplayAspectRatioStr);
+			Assert.AreEqual(1.7777777777777777777777777777778m, videoStreamInfo.VideoDisplayAspectRatio);
+			// pix_fmt="yuv420p"
+			// level="51"
+			// is_avc="1"
+			// nal_length_size="4"
+			Assert.AreEqual("50/2", videoStreamInfo.FrameRateStr);
+			Assert.AreEqual(25, videoStreamInfo.FrameRate);
+			Assert.AreEqual("0/0", videoStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(0, videoStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(0.040000, videoStreamInfo.StartTime);
+
+			var audioStreamInfo = mediaStreamInfos[1];
+			Assert.AreEqual(1, audioStreamInfo.Index);
+			Assert.AreEqual("aac", audioStreamInfo.Codec);
+			Assert.AreEqual("Advanced Audio Coding", audioStreamInfo.CodecLongName);
+			Assert.AreEqual("audio", audioStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/24000"
+			// codec_tag_string="[0][0][0][0]"
+			// codec_tag="0x0000"
+			// sample_fmt="s16"
+			Assert.AreEqual(48000, audioStreamInfo.AudioSampleRate);
+			Assert.AreEqual(1, audioStreamInfo.AudioChannels);
+			// bits_per_sample="0"
+			Assert.AreEqual("0/0", audioStreamInfo.FrameRateStr);
+			Assert.AreEqual(0, audioStreamInfo.FrameRate);
+			Assert.AreEqual("500/21", audioStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(23.809523809523809523809523809524m, audioStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(0.035000, audioStreamInfo.StartTime);
 		}
 
 		[Test]
@@ -126,17 +246,55 @@ namespace ZTepsic.FFmpeg.Tests {
 			// Arrange
 
 			// Act
-			MediaFormatInfo mediaFormatInfo = MediaFormatInfoFactory.CreateFromFile(XML_DIR + "rtmp_03.xml");
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "rtmp_03.xml");
 
 			// Assert
-			Assert.NotNull(mediaFormatInfo);
-			Assert.AreEqual("rtmp://stream.live.example.com/live/Flash_live_TV@27823 live=1", mediaFormatInfo.FileName);
-			Assert.AreEqual("flv", mediaFormatInfo.Format);
-			Assert.AreEqual("FLV format", mediaFormatInfo.FormatLongName);
-			Assert.AreEqual(0, mediaFormatInfo.Bitrate);
-			Assert.AreEqual(0, mediaFormatInfo.StartTime);
-			Assert.AreEqual(0, mediaFormatInfo.Duration);
-			Assert.AreEqual(0, mediaFormatInfo.FileSize);
+			Assert.NotNull(mediaStreamInfos);
+			Assert.AreEqual(2, mediaStreamInfos.Count);
+
+			var videoStreamInfo = mediaStreamInfos[0];
+			Assert.AreEqual(0, videoStreamInfo.Index);
+			Assert.AreEqual("vp6f", videoStreamInfo.Codec);
+			Assert.AreEqual("On2 VP6 (Flash version)", videoStreamInfo.CodecLongName);
+			Assert.AreEqual("video", videoStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/1000"
+			// codec_tag_string="[0][0][0][0]"
+			// codec_tag="0x0000"
+			Assert.AreEqual(800, videoStreamInfo.VideoWidth);
+			Assert.AreEqual(464, videoStreamInfo.VideoHeight);
+			// has_b_frames="0"
+			Assert.AreEqual(null, videoStreamInfo.VideoSampleAspectRatioStr);
+			Assert.AreEqual(0, videoStreamInfo.VideoSampleAspectRatio);
+			Assert.AreEqual(null, videoStreamInfo.VideoDisplayAspectRatioStr);
+			Assert.AreEqual(0, videoStreamInfo.VideoDisplayAspectRatio);
+			// pix_fmt="yuv420p"
+			// level="-99"
+			Assert.AreEqual("25/1", videoStreamInfo.FrameRateStr);
+			Assert.AreEqual(25, videoStreamInfo.FrameRate);
+			Assert.AreEqual("0/0", videoStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(0, videoStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(0, videoStreamInfo.StartTime);
+
+			var audioStreamInfo = mediaStreamInfos[1];
+			Assert.AreEqual(1, audioStreamInfo.Index);
+			Assert.AreEqual("mp3", audioStreamInfo.Codec);
+			Assert.AreEqual("MP3 (MPEG audio layer 3)", audioStreamInfo.CodecLongName);
+			Assert.AreEqual("audio", audioStreamInfo.Type.ToString().ToLower());
+			// codec_time_base="1/22050"
+			// codec_tag_string="[0][0][0][0]"
+			// codec_tag="0x0000"
+			// sample_fmt="s16"
+			Assert.AreEqual(22050, audioStreamInfo.AudioSampleRate);
+			Assert.AreEqual(2, audioStreamInfo.AudioChannels);
+			// bits_per_sample="0"
+			Assert.AreEqual("0/0", audioStreamInfo.FrameRateStr);
+			Assert.AreEqual(0, audioStreamInfo.FrameRate);
+			Assert.AreEqual("500/13", audioStreamInfo.AvgFrameRateStr);
+			Assert.AreEqual(38.461538461538461538461538461538m, audioStreamInfo.AvgFrameRate);
+			// time_base="1/1000"
+			Assert.AreEqual(0, audioStreamInfo.StartTime);
+			Assert.AreEqual(64000, audioStreamInfo.BitRate);
 
 		}
 

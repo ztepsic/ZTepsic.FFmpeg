@@ -121,6 +121,11 @@ namespace ZTepsic.FFmpeg {
 		/// </summary>
 		public decimal StartTime { get; internal set; }
 
+		/// <summary>
+		/// Bit Rate
+		/// </summary>
+		public int BitRate { get; internal set; }
+
 		#region Video specific
 
 		/// <summary>
@@ -237,12 +242,12 @@ namespace ZTepsic.FFmpeg {
 		/// <summary>
 		/// Sample rate (Hz)
 		/// </summary>
-		private decimal audioSampleRate;
+		private int audioSampleRate;
 
 		/// <summary>
 		/// Sample rate (Hz)
 		/// </summary>
-		public decimal AudioSampleRate {
+		public int AudioSampleRate {
 			get { return audioSampleRate; }
 			internal set {
 				if(type == MediaStreamType.Audio) {

@@ -282,6 +282,15 @@ namespace ZTepsic.FFmpeg {
 									}
 								}
 
+								if (streamNode.Attributes[BIT_RATE] != null) {
+									try {
+										mediaStreamInfo.BitRate = Int32.Parse(streamNode.Attributes[BIT_RATE].InnerText,
+																				 CultureInfo.InvariantCulture);
+									} catch (Exception) {
+										mediaStreamInfo.BitRate = 0;
+									}
+								}
+
 								//r_frame_rate="25/1" ||"50/2"
 								if (streamNode.Attributes[R_FRAME_RATE] != null) {
 									mediaStreamInfo.FrameRateStr = streamNode.Attributes[R_FRAME_RATE].InnerText;
@@ -336,7 +345,7 @@ namespace ZTepsic.FFmpeg {
 
 								if (streamNode.Attributes[SAMPLE_RATE] != null) {
 									try {
-										mediaStreamInfo.AudioSampleRate = Decimal.Parse(streamNode.Attributes[SAMPLE_RATE].InnerText,
+										mediaStreamInfo.AudioSampleRate = Int32.Parse(streamNode.Attributes[SAMPLE_RATE].InnerText,
 										                                                CultureInfo.InvariantCulture);
 									} catch (Exception) {
 										mediaStreamInfo.AudioSampleRate = 0;
