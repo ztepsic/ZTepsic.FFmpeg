@@ -50,11 +50,10 @@
     <Compile Include="MediaFormatInfoFactory.cs" />
     <Compile Include="MediaInfo.cs" />
     <Compile Include="MediaInfoFactory.cs" />
+    <Compile Include="MediaInfoFFmpegCmd.cs" />
     <Compile Include="MediaStreamInfo.cs" />
     <Compile Include="MediaStreamInfoFactory.cs" />
-    <Compile Include="ResInfo.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="ResInfoFFmpegCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -51,12 +51,12 @@
     <Compile Include="FFmpegCommandTests.cs" />
     <Compile Include="MediaFormatInfoFactoryTests.cs" />
     <Compile Include="MediaFormatInfoTests.cs" />
+    <Compile Include="MediaInfoFactoryTests.cs" />
     <Compile Include="MediaInfoTests.cs" />
     <Compile Include="MediaStreamInfoFactoryTests.cs" />
     <Compile Include="MediaStreamInfoTests.cs" />
-    <Compile Include="ResInfoFFmpegCmdTests.cs" />
+    <Compile Include="MediaInfoFFmpegCmdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResInfoTests.cs" />
     <Compile Include="Helpers\ClassMembersHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +90,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)FFmpeg\ffmpeg.exe" "$(TargetDir)"
+copy "$(SolutionDir)FFmpeg\ffprobe.exe" "$(TargetDir)"
 xcopy "$(ProjectDir)Outputs" "$(TargetDir)Outputs" /E /i /Y</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

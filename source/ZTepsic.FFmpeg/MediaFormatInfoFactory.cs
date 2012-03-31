@@ -81,7 +81,7 @@ namespace ZTepsic.FFmpeg {
 					case XML_EXT:
 						XmlDocument xmlDoc = new XmlDocument();
 						xmlDoc.Load(fileName);
-						mediaFormatInfo = createFromXml(xmlDoc);
+						mediaFormatInfo = CreateFromXml(xmlDoc);
 						break;
 				}
 			}
@@ -99,7 +99,7 @@ namespace ZTepsic.FFmpeg {
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.LoadXml(xml);
 
-			return createFromXml(xmlDoc);
+			return CreateFromXml(xmlDoc);
 		}
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace ZTepsic.FFmpeg {
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.Load(stream);
 
-			return createFromXml(xmlDoc);
+			return CreateFromXml(xmlDoc);
 		}
 
 		/// <summary>
@@ -119,7 +119,7 @@ namespace ZTepsic.FFmpeg {
 		/// </summary>
 		/// <param name="xmlDoc">XmlDocument containing data for creating MediaFormatInfo object.</param>
 		/// <returns>MediaFormatInfo object</returns>
-		private static MediaFormatInfo createFromXml(XmlDocument xmlDoc) {
+		public static MediaFormatInfo CreateFromXml(XmlDocument xmlDoc) {
 			MediaFormatInfo mediaFormatInfo = null;
 
 			if (xmlDoc.DocumentElement != null) {

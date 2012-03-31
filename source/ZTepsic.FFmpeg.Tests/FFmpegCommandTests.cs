@@ -22,7 +22,7 @@ namespace ZTepsic.FFmpeg.Tests {
 
 			// Assert
 			Assert.IsNotNull(ffmpegCmd);
-			Assert.AreEqual(FFmpegCommand.FFMPEG_FILE, ffmpegCmd.FFmpegExePath);
+			Assert.AreEqual(FFmpegCommand.FFmpegApp.FFmpeg, ffmpegCmd.ExeFilePath);
 		}
 
 
@@ -37,7 +37,7 @@ namespace ZTepsic.FFmpeg.Tests {
 
 			// Assert
 			Assert.IsNotNull(ffmpegCmd);
-			Assert.AreEqual(ffmpegExePath, ffmpegCmd.FFmpegExePath);
+			Assert.AreEqual(ffmpegExePath, ffmpegCmd.ExeFilePath);
 
 		}
 
@@ -87,7 +87,7 @@ namespace ZTepsic.FFmpeg.Tests {
 			ffmpegCmd.Execute();
 
 			// Assert
-			Assert.AreEqual(FFmpegCommand.FFMPEG_FILE, ffmpegCmd.FFmpegExePath);
+			Assert.AreEqual(FFmpegCommand.FFmpegApp.FFmpeg, ffmpegCmd.ExeFilePath);
 		}
 
 		[Ignore]

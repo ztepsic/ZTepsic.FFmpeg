@@ -13,22 +13,22 @@ namespace ZTepsic.FFmpeg {
 		#region Members
 
 		/// <summary>
-		/// 
+		/// MediaFormatInfo
 		/// </summary>
 		private readonly MediaFormatInfo format;
 
 		/// <summary>
-		/// 
+		/// Gets and Sets(internal) MediaFormatInfo
 		/// </summary>
-		public MediaFormatInfo Format { get; internal set; }
+		public MediaFormatInfo Format { get { return format; } }
 
 		/// <summary>
-		/// 
+		/// MediaStreamInfos
 		/// </summary>
 		private IList<MediaStreamInfo> streams;
 
 		/// <summary>
-		/// 
+		/// Gets MediaStreamInfo
 		/// </summary>
 		public IList<MediaStreamInfo> Streams {
 			get { return new ReadOnlyCollection<MediaStreamInfo>(streams); }
@@ -41,7 +41,17 @@ namespace ZTepsic.FFmpeg {
 		/// <summary>
 		/// Internal Constructor
 		/// </summary>
-		/// <param name="format"></param>
+		/// <param name="format">MediaFormatInfo</param>
+		/// <param name="streams">list of MediaStreamInfo objects</param>
+		internal MediaInfo(MediaFormatInfo format, IList<MediaStreamInfo> streams) {
+			this.format = format;
+			this.streams = streams;
+		}
+
+		/// <summary>
+		/// Internal Constructor
+		/// </summary>
+		/// <param name="format">MediaFormatInfo</param>
 		internal MediaInfo(MediaFormatInfo format) {
 			this.format = format;
 			streams = new List<MediaStreamInfo>();

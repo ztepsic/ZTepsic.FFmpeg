@@ -8,29 +8,47 @@ using System.Text;
 
 namespace ZTepsic.FFmpeg {
 	/// <summary>
-	/// FFmpeg is an adapter class to FFmpeg application
+	/// FFmpegCommand is an adapter class to FFmpeg applications
 	/// </summary>
 	public abstract class FFmpegCommand : ICommand {
 
 		#region Members
 
 		/// <summary>
-		/// Default file name of the executable ffmpeg file.
+		/// FFmpeg applications
 		/// </summary>
-		public const string FFMPEG_FILE = "ffmpeg.exe";
+		public enum FFmpegApp {
+			/// <summary>
+			/// FFmpeg application
+			/// </summary>
+			FFmpeg,
+
+			/// <summary>
+			/// FFprobe application
+			/// </summary>
+			FFprobe
+		}
 
 		/// <summary>
-		/// File path of the executable ffmpeg file (ffmpeg.exe).
+		/// Default file names of the excutable ffmpeg application files.
 		/// </summary>
-		private string ffmpegExePath;
+		private static Dictionary<FFmpegApp, string> ffMpegApps = new Dictionary<FFmpegApp, string>() {
+			{FFmpegApp.FFmpeg, "ffmpeg.exe"},
+			{FFmpegApp.FFprobe, "ffprobe.exe"}
+		};
 
 		/// <summary>
-		/// Gets the file path of the executable ffmpeg file (ffmpeg.exe)
+		/// File path of the executable file
 		/// </summary>
-		public string FFmpegExePath { get { return ffmpegExePath; } }
+		private string exeFilePath;
 
 		/// <summary>
-		/// FFmpeg parameters
+		/// Gets the file path of the executable file
+		/// </summary>
+		public string ExeFilePath { get { return exeFilePath; } }
+
+		/// <summary>
+		/// Application parameters
 		/// </summary>
 		protected string parameters;
 
@@ -39,54 +57,48 @@ namespace ZTepsic.FFmpeg {
 		#region Constructors and Init
 
 		/// <summary>
-		/// Constructs FFmpeg with ffmpegExePath as ffmpeg.exe and workingDirPath in the current directory
+		/// Constructor
 		/// </summary>
-		protected FFmpegCommand() : this(FFMPEG_FILE) { }
-
+		/// <param name="fFmpegApp"></param>
+		protected FFmpegCommand(FFmpegApp fFmpegApp) : this(ffMpegApps[fFmpegApp]) {}
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="ffmpegExePath">file path of the executable ffmpeg file</param>
-		protected FFmpegCommand(string ffmpegExePath) {
-			this.ffmpegExePath = ffmpegExePath;
+		/// <param name="exeFilePath">file path of the executable ffmpeg file</param>
+		protected FFmpegCommand(string exeFilePath) {
+			this.exeFilePath = exeFilePath;
 		}
 
 		#endregion
 
 		#region Methods
 
-
-
 		/// <summary>
 		/// Execute command
 		/// </summary>
 		public void Execute() {
-			if(!File.Exists(ffmpegExePath)) {
-				if(File.Exists(FFMPEG_FILE)) {
-					ffmpegExePath = FFMPEG_FILE;
-				} else {
-					throw new FileNotFoundException(String.Format("Could not find the executable ffmpeg application in: {0}.", ffmpegExePath));	
-				}
+			if(!File.Exists(exeFilePath)) {
+				throw new FileNotFoundException(String.Format("Could not find the executable ffmpeg application in: {0}.", exeFilePath));
 			}
 
 
-			ProcessStartInfo processStartInfo = new ProcessStartInfo(ffmpegExePath, parameters) {
+			ProcessStartInfo processStartInfo = new ProcessStartInfo(exeFilePath, parameters) {
 				UseShellExecute = false,
 				CreateNoWindow = true,
 				RedirectStandardOutput = true,
-				RedirectStandardError = true
+				RedirectStandardError = true,
 			};
 
-			string output;
-			string error;
+			string output = null;
+			string error = null;
 			Process proc = null;
 			using(proc = Process.Start(processStartInfo)) {
 				manipulateWithProcess(proc);
 
 				proc.WaitForExit();
 
-				output = proc.StandardError.ReadToEnd();
+				output = proc.StandardOutput.ReadToEnd();
 				error = proc.StandardError.ReadToEnd();
 			}
 

@@ -125,6 +125,19 @@ namespace ZTepsic.FFmpeg.Tests {
 		}
 
 		[Test]
+		public void MediaStreamInfo_List_Is_Empty_If_Streams_Element_Not_Exist_In_Xml_File_Mmsh_02() {
+			// Arrange
+
+			// Act
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "mmsh_02_not.xml");
+
+			// Assert
+			Assert.NotNull(mediaStreamInfos);
+			Assert.IsEmpty(mediaStreamInfos);
+
+		}
+
+		[Test]
 		public void Can_Create_MediaFormatInfo_From_Xml_File_Mmst_01() {
 			// Arrange
 
@@ -181,6 +194,19 @@ namespace ZTepsic.FFmpeg.Tests {
 			// time_base="1/1000"
 			Assert.AreEqual(144567.815000, audioStreamInfo.StartTime);
 			Assert.AreEqual(32000, audioStreamInfo.BitRate);
+
+		}
+
+		[Test]
+		public void MediaStreamInfo_List_Is_Empty_If_Streams_Element_Not_Exist_In_Xml_File_Rtmp_01() {
+			// Arrange
+
+			// Act
+			IList<MediaStreamInfo> mediaStreamInfos = MediaStreamInfoFactory.CreateFromFile(XML_DIR + "rtmp_01_not.xml");
+
+			// Assert
+			Assert.NotNull(mediaStreamInfos);
+			Assert.IsEmpty(mediaStreamInfos);
 
 		}
 
