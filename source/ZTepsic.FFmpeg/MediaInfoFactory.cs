@@ -53,7 +53,12 @@ namespace ZTepsic.FFmpeg {
 		/// <returns>MediaInfo object</returns>
 		public static MediaInfo CreateFromXml(string xml) {
 			XmlDocument xmlDoc = new XmlDocument();
-			xmlDoc.LoadXml(xml);
+			try {
+				xmlDoc.LoadXml(xml);
+			} catch (XmlException ex) {
+			}
+
+			
 
 			return createFromXml(xmlDoc);
 		}

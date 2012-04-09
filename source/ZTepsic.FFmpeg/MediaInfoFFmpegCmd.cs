@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,11 @@ namespace ZTepsic.FFmpeg {
 	public class MediaInfoFFmpegCmd : FFmpegCommand {
 
 		#region Members
+
+		/// <summary>
+		/// Wait for exit time constant in miliseconds
+		/// </summary>
+		public const int WAIT_FOR_EXIT_TIME = 120000;
 
 		/// <summary>
 		/// URI reference of the video resource for which we are asking information.
@@ -40,9 +46,20 @@ namespace ZTepsic.FFmpeg {
 		/// <param name="resourceUriReference">URI reference of the video resource for wich we are aksing information.
 		/// A URI reference may take the form of a full URI, or just the scheme-specific portion of one, or even some trailing component.
 		/// </param>
-		public MediaInfoFFmpegCmd(string resourceUriReference) : base(FFmpegApp.FFprobe) {
+		public MediaInfoFFmpegCmd(string resourceUriReference) : this(resourceUriReference, 0) { }
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="resourceUriReference">URI reference of the video resource for wich we are aksing information.
+		/// A URI reference may take the form of a full URI, or just the scheme-specific portion of one, or even some trailing component.
+		/// </param>
+		/// <param name="waitForExitTime">Wait for associated process to exit in miliseconds</param>
+		public MediaInfoFFmpegCmd(string resourceUriReference, int waitForExitTime) : base(FFmpegApp.FFprobe) {
 			this.resourceUriReference = resourceUriReference;
-			parameters = String.Format("-i \"{0}\" -print_format xml -show_error -show_format -show_streams", resourceUriReference);
+			WaitForExitTime = waitForExitTime;
+
+			Parameters = String.Format("-i \"{0}\" -print_format xml -show_error -show_format -show_streams", resourceUriReference);
 			//ffprobe.exe -i %resource% -print_format %print_format% -show_error -show_format -show_streams > %out_file_prefix%_%out_file_sufix%.%print_format%
 		}
 
@@ -67,6 +84,17 @@ namespace ZTepsic.FFmpeg {
 
 			Notify(mediaInfo);
 
+		}
+
+		/// <summary>
+		/// Method provides hook to manipulate with running FFmpeg process
+		/// </summary>
+		/// <param name="proc">FFmpeg running process</param>
+		protected override void manipulateWithProcess(Process proc) {
+			proc.WaitForExit(WaitForExitTime > 0 ? WaitForExitTime : WAIT_FOR_EXIT_TIME);
+			if(!proc.HasExited) {
+				proc.Kill();
+			}
 		}
 
 		#endregion

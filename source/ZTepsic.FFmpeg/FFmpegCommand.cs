@@ -48,9 +48,14 @@ namespace ZTepsic.FFmpeg {
 		public string ExeFilePath { get { return exeFilePath; } }
 
 		/// <summary>
-		/// Application parameters
+		/// Application Parameters
 		/// </summary>
-		protected string parameters;
+		protected string Parameters { get; set; }
+
+		/// <summary>
+		/// Wait for associated process to exit in miliseconds
+		/// </summary>
+		protected int WaitForExitTime { get; set; }
 
 		#endregion
 
@@ -82,8 +87,7 @@ namespace ZTepsic.FFmpeg {
 				throw new FileNotFoundException(String.Format("Could not find the executable ffmpeg application in: {0}.", exeFilePath));
 			}
 
-
-			ProcessStartInfo processStartInfo = new ProcessStartInfo(exeFilePath, parameters) {
+			ProcessStartInfo processStartInfo = new ProcessStartInfo(exeFilePath, Parameters) {
 				UseShellExecute = false,
 				CreateNoWindow = true,
 				RedirectStandardOutput = true,
@@ -95,8 +99,6 @@ namespace ZTepsic.FFmpeg {
 			Process proc = null;
 			using(proc = Process.Start(processStartInfo)) {
 				manipulateWithProcess(proc);
-
-				proc.WaitForExit();
 
 				output = proc.StandardOutput.ReadToEnd();
 				error = proc.StandardError.ReadToEnd();
@@ -114,10 +116,17 @@ namespace ZTepsic.FFmpeg {
 		protected abstract void processResult(String output, String error);
 
 		/// <summary>
-		/// Method provides hook to manipulate with running FFmpeg process
+		/// Method provides hook to manipulate with running FFmpeg process.
+		/// Default: Wait specified number of miliseconds for the associated process to end.
 		/// </summary>
 		/// <param name="proc">FFmpeg running process</param>
-		protected virtual void manipulateWithProcess(Process proc) { }
+		protected virtual void manipulateWithProcess(Process proc) {
+			if (WaitForExitTime > 0) {
+				proc.WaitForExit(WaitForExitTime);
+			} else {
+				proc.WaitForExit();
+			}
+		}
 
 		#endregion
 	}
