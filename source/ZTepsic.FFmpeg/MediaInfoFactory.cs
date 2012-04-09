@@ -53,12 +53,7 @@ namespace ZTepsic.FFmpeg {
 		/// <returns>MediaInfo object</returns>
 		public static MediaInfo CreateFromXml(string xml) {
 			XmlDocument xmlDoc = new XmlDocument();
-			try {
-				xmlDoc.LoadXml(xml);
-			} catch (XmlException ex) {
-			}
-
-			
+			xmlDoc.LoadXml(xml);
 
 			return createFromXml(xmlDoc);
 		}
@@ -98,7 +93,6 @@ namespace ZTepsic.FFmpeg {
 
 			return mediaInfo;
 		}
-
 
 		#endregion
 

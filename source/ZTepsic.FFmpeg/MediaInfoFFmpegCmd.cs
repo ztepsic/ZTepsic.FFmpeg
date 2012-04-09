@@ -46,7 +46,7 @@ namespace ZTepsic.FFmpeg {
 		/// <param name="resourceUriReference">URI reference of the video resource for wich we are aksing information.
 		/// A URI reference may take the form of a full URI, or just the scheme-specific portion of one, or even some trailing component.
 		/// </param>
-		public MediaInfoFFmpegCmd(string resourceUriReference) : this(resourceUriReference, 0) { }
+		public MediaInfoFFmpegCmd(string resourceUriReference) : this(resourceUriReference, WAIT_FOR_EXIT_TIME) { }
 
 		/// <summary>
 		/// Constructor
@@ -84,17 +84,6 @@ namespace ZTepsic.FFmpeg {
 
 			Notify(mediaInfo);
 
-		}
-
-		/// <summary>
-		/// Method provides hook to manipulate with running FFmpeg process
-		/// </summary>
-		/// <param name="proc">FFmpeg running process</param>
-		protected override void manipulateWithProcess(Process proc) {
-			proc.WaitForExit(WaitForExitTime > 0 ? WaitForExitTime : WAIT_FOR_EXIT_TIME);
-			if(!proc.HasExited) {
-				proc.Kill();
-			}
 		}
 
 		#endregion

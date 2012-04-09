@@ -94,14 +94,23 @@ namespace ZTepsic.FFmpeg {
 				RedirectStandardError = true,
 			};
 
+			Process proc = null;
 			string output = null;
 			string error = null;
-			Process proc = null;
 			using(proc = Process.Start(processStartInfo)) {
-				manipulateWithProcess(proc);
+
+				if (WaitForExitTime > 0) {
+					proc.WaitForExit(WaitForExitTime);
+				} else {
+					proc.WaitForExit();
+				}
 
 				output = proc.StandardOutput.ReadToEnd();
 				error = proc.StandardError.ReadToEnd();
+
+				if(!proc.HasExited) {
+					proc.Kill();
+				}
 			}
 
 			processResult(output, error);
@@ -114,19 +123,6 @@ namespace ZTepsic.FFmpeg {
 		/// <param name="output">Output result of the execution of the FFmpeg application</param>
 		/// <param name="error">Error result of the execution of the FFmpeg application</param>
 		protected abstract void processResult(String output, String error);
-
-		/// <summary>
-		/// Method provides hook to manipulate with running FFmpeg process.
-		/// Default: Wait specified number of miliseconds for the associated process to end.
-		/// </summary>
-		/// <param name="proc">FFmpeg running process</param>
-		protected virtual void manipulateWithProcess(Process proc) {
-			if (WaitForExitTime > 0) {
-				proc.WaitForExit(WaitForExitTime);
-			} else {
-				proc.WaitForExit();
-			}
-		}
 
 		#endregion
 	}
