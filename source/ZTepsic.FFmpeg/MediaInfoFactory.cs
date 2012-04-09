@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using ZTepsic.FFmpeg.Exceptions;
 
 namespace ZTepsic.FFmpeg {
 	/// <summary>
@@ -76,7 +77,7 @@ namespace ZTepsic.FFmpeg {
 		/// <param name="xmlDoc">XmlDocument containing data for creating MediaInfo object.</param>
 		/// <returns>MediaInfo object</returns>
 		private static MediaInfo createFromXml(XmlDocument xmlDoc) {
-			FFmpegException fFmpegException = FFmpegException.CreateFromXml(xmlDoc);
+			FFmpegException fFmpegException = FFmpegExceptionFactory.CreateFromXml(xmlDoc);
 			if(fFmpegException != null) {
 				throw fFmpegException;
 			}

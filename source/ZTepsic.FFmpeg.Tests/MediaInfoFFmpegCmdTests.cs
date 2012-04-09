@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using ZTepsic.FFmpeg.Exceptions;
 
 namespace ZTepsic.FFmpeg.Tests {
 	[TestFixture]
@@ -39,7 +40,7 @@ namespace ZTepsic.FFmpeg.Tests {
 		}
 
 		[Test]
-		[ExpectedException(typeof(FFmpegException))]
+		[ExpectedException(typeof(OperationNotPermittedException))]
 		public void If_Error_Exists_Command_Notifies_With_FFmpegException() {
 			// Arrange
 			const string resouceUriReference = "rtmp://error";

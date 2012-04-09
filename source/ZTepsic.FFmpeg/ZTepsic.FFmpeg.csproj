@@ -44,8 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\FFmpegExceptionFactory.cs" />
+    <Compile Include="Exceptions\InvalidDataException.cs" />
+    <Compile Include="Exceptions\IOException.cs" />
+    <Compile Include="Exceptions\OperationNotPermittedException.cs" />
+    <Compile Include="Exceptions\UnknownException.cs" />
     <Compile Include="FFmpegCommand.cs" />
-    <Compile Include="FFmpegException.cs" />
+    <Compile Include="Exceptions\FFmpegException.cs" />
     <Compile Include="MediaFormatInfo.cs" />
     <Compile Include="MediaFormatInfoFactory.cs" />
     <Compile Include="MediaInfo.cs" />

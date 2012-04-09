@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using ZTepsic.FFmpeg.Exceptions;
 
 namespace ZTepsic.FFmpeg.Tests {
 	[TestFixture]
@@ -8,7 +9,7 @@ namespace ZTepsic.FFmpeg.Tests {
 		private string XML_DIR = Environment.CurrentDirectory + @"\Outputs\";
 
 		[Test]
-		[ExpectedException(typeof(FFmpegException))]
+		[ExpectedException(typeof(IOException))]
 		public void Throw_FFmpegException_If_Error_Element_In_Xml_File_Mmsh_02() {
 			// Arrange
 			MediaInfo mediaInfo = null;
@@ -25,12 +26,13 @@ namespace ZTepsic.FFmpeg.Tests {
 			// Assert
 			Assert.AreEqual("Input/output error", fFmpegException.Message);
 			Assert.AreEqual(-5, fFmpegException.Code);
+			Assert.IsInstanceOf<IOException>(fFmpegException);
 
 			throw fFmpegException;
 		}
 
 		[Test]
-		[ExpectedException(typeof(FFmpegException))]
+		[ExpectedException(typeof(OperationNotPermittedException))]
 		public void Throw_FFmpegException_If_Error_Element_In_Xml_File_Rtmp_01() {
 			// Arrange
 			MediaInfo mediaInfo = null;
@@ -47,6 +49,7 @@ namespace ZTepsic.FFmpeg.Tests {
 			// Assert
 			Assert.AreEqual("Operation not permitted", fFmpegException.Message);
 			Assert.AreEqual(-1, fFmpegException.Code);
+			Assert.IsInstanceOf<OperationNotPermittedException>(fFmpegException);
 
 			throw fFmpegException;
 		}
